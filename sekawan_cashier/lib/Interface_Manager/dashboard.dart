@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import '../login.dart';
 import 'laporan.dart';
 import 'manajemen_produk.dart';
 import 'manajemen_user.dart';

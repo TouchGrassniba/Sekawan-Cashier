@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dashboard.dart';
 import 'manajemen_produk.dart';
-import 'login.dart';
+import '../login.dart';
 import 'manajemen_user.dart';
 
 class LaporanPenjualanPage extends StatelessWidget {
