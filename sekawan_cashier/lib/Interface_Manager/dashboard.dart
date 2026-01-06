@@ -237,44 +237,14 @@ class DashboardPage extends StatelessWidget {
     );
   }
 
-  static Widget _logoutMenu(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.red.shade50,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: ListTile(
-        leading: const Icon(Icons.logout, color: Colors.red),
+   Widget _logoutMenu(BuildContext context) => ListTile(
+        leading: const Icon(Icons.power_settings_new, color: Colors.red),
         title: const Text('Keluar', style: TextStyle(color: Colors.red)),
-        onTap: () {
-          showDialog(
-            context: context,
-            builder: (_) => AlertDialog(
-              title: const Text('Konfirmasi Logout'),
-              content: const Text('Apakah Anda yakin ingin keluar?'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Batal'),
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                  onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (_) => const LoginPage()),
-                      (route) => false,
-                    );
-                  },
-                  child: const Text('Keluar'),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
-    );
-  }
+        onTap: () => Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (_) => const LoginPage()),
+            (_) => false),
+      );
 }
 
 // ================= COMPONENTS =================

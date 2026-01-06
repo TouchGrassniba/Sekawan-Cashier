@@ -35,28 +35,34 @@ class CekProdukPage extends StatelessWidget {
                             'Daftar Produk',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 12),
+
+                          /// HEADER
                           _tableHeader(),
                           const Divider(),
+
+                          /// BODY
                           Expanded(
-                            child: ListView(
-                              children: products.map((p) {
+                            child: ListView.builder(
+                              itemCount: products.length,
+                              itemBuilder: (context, index) {
+                                final p = products[index];
                                 return Padding(
                                   padding:
-                                      const EdgeInsets.symmetric(vertical: 8),
+                                      const EdgeInsets.symmetric(vertical: 6),
                                   child: Row(
                                     children: [
-                                      _cell(p[0]),
-                                      _cell(p[1]),
-                                      _cell(p[2]),
-                                      _cell(p[3]),
-                                      _cell(p[4]),
-                                      _status(p[5]),
+                                      _cell(p[0] as String),
+                                      _cell(p[1] as String),
+                                      _cell(p[2]  as String),
+                                      _cell(p[3]  as String),
+                                      _cell(p[4]  as String),
+                                      _status(p[5]  as String == true),
                                       _action(context),
                                     ],
                                   ),
                                 );
-                              }).toList(),
+                              },
                             ),
                           ),
                         ],
@@ -86,6 +92,7 @@ class CekProdukPage extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold)),
           const Text('Cashier'),
           const SizedBox(height: 30),
+
           _menu(context, Icons.shopping_cart, 'Transaksi',
               const KasirTransaksiPage()),
           _menu(context, Icons.inventory, 'Cek Produk',
@@ -93,6 +100,7 @@ class CekProdukPage extends StatelessWidget {
               active: true),
           _menu(context, Icons.history, 'Riwayat Transaksi',
               const RiwayatTransaksiPage()),
+
           const Spacer(),
           _logout(context),
         ],
@@ -161,11 +169,15 @@ class CekProdukPage extends StatelessWidget {
   }
 
   Widget _cell(String text) {
-    return Expanded(child: Text(text));
+    return Flexible(
+      fit: FlexFit.tight,
+      child: Text(text),
+    );
   }
 
   Widget _status(bool ready) {
-    return Expanded(
+    return Flexible(
+      fit: FlexFit.tight,
       child: Chip(
         label: Text(ready ? 'Ready' : 'Habis'),
         backgroundColor:
@@ -175,7 +187,8 @@ class CekProdukPage extends StatelessWidget {
   }
 
   Widget _action(BuildContext context) {
-    return Expanded(
+    return Flexible(
+      fit: FlexFit.tight,
       child: IconButton(
         icon: const Icon(Icons.remove_red_eye),
         onPressed: () {
@@ -226,8 +239,12 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Text(text, style: const TextStyle(fontWeight: FontWeight.bold)),
+    return Flexible(
+      fit: FlexFit.tight,
+      child: Text(
+        text,
+        style: const TextStyle(fontWeight: FontWeight.bold),
+      ),
     );
   }
 }

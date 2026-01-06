@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Interface_Manager/dashboard.dart';
+import 'Interface_Kasir/transaksi.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,6 +11,42 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool rememberDevice = false;
+
+  final TextEditingController idController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  void _login(BuildContext context) {
+    final id = idController.text.trim();
+
+    if (id == '1') {
+      // LOGIN MANAGER
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const DashboardPage()),
+      );
+    } else if (id == '2') {
+      // LOGIN KASIR
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const KasirTransaksiPage()),
+      );
+    } else {
+      // ID SALAH
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: const Text('Login Gagal'),
+          content: const Text('ID tidak dikenali'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            )
+          ],
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +60,7 @@ class _LoginPageState extends State<LoginPage> {
             left: 30,
             child: Row(
               children: [
-                Image.asset(
-                  'images/logo.png',
-                  width: 42,
-                ),
+                Image.asset('images/logo.png', width: 42),
                 const SizedBox(width: 10),
                 const Text(
                   'SEKAWAN CASHIER',
@@ -72,6 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 30),
 
                   TextField(
+                    controller: idController,
                     decoration: InputDecoration(
                       labelText: 'ID',
                       border: OutlineInputBorder(
@@ -82,6 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 16),
 
                   TextField(
+                    controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'Password',
@@ -105,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 20),
 
-                  // LOGIN → LANGSUNG DASHBOARD
+                  // LOGIN BUTTON
                   SizedBox(
                     width: double.infinity,
                     height: 46,
@@ -116,14 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const DashboardPage(),
-                          ),
-                        );
-                      },
+                      onPressed: () => _login(context),
                       child: const Text(
                         'Login',
                         style: TextStyle(color: Colors.white),
