@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Interface_Manager/dashboard.dart';
 import 'Interface_Kasir/transaksi.dart';
+import 'Interface_Kasir/user_baru.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -30,7 +31,13 @@ class _LoginPageState extends State<LoginPage> {
         context,
         MaterialPageRoute(builder: (_) => const KasirTransaksiPage()),
       );
-    } else {
+    }else if (id == '3') {
+      // LOGIN KASIR
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const SetPasswordPage()),
+      );
+      }else {
       // ID SALAH
       showDialog(
         context: context,
