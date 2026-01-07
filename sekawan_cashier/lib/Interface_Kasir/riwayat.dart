@@ -250,20 +250,23 @@ class RiwayatTransaksiPage extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-         children: [
-                    Image.asset('images/logo.png', width: 40),
-                    const SizedBox(width: 10),
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'SEKAWAN CASHIER',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text('Chasier', style: TextStyle(fontSize: 12)),
-                      ],
-                    ),
-                  const SizedBox(height: 30,),
+        children: [
+         Row(
+            children: [
+              Image.asset('images/logo.png', width: 40),
+              const SizedBox(width: 10),
+              const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('SEKAWAN CASHIER',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text('Cashier', style: TextStyle(fontSize: 12)),
+                ],
+              ),
+            ],
+          ),
+           const SizedBox(height: 30,),
+
           _menu(context, Icons.shopping_cart, 'Transaksi',
               const KasirTransaksiPage()),
           _menu(context, Icons.inventory, 'Cek Produk',
