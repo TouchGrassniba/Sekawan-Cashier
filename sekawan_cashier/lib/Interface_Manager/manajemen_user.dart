@@ -96,7 +96,7 @@ class _ManajemenUserPageState extends State<ManajemenUserPage> {
               () => _go(context, const LaporanPenjualanPage())),
           _menu(context, Icons.inventory, 'Manajemen Produk',
               () => _go(context, const ManajemenProdukPage())),
-          _menu(context, Icons.people, 'Manajemen User', () {}, active: true),
+          _menu(context, Icons.people, 'Manajemen User', active: true, () {}),
           const Spacer(),
           _logout(context),
         ],
